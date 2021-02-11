@@ -20,7 +20,13 @@ class Session():
                             body, files=files,
                             headers=self.header_with(headers))
         return self.parse_by_level(r.content, parse_level)
-    
+
+    def put(self, url, body={}, headers={}, parse_level=1): 
+        r=self.session.put(self.validate_url(url),
+                            body,
+                            headers=self.header_with(headers))
+        return self.parse_by_level(r.content, parse_level)
+
     def get(self, url, headers={}, parse_level=1):
         r=self.session.get(self.validate_url(url),
                            headers=self.header_with(headers))
